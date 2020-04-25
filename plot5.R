@@ -8,10 +8,13 @@ SCC <- readRDS("Source_Classification_Code.rds")
 colnames(NEI)
 colnames(SCC)
 
+# Creating a new variable with data of Baltimore city
+emissionsBaltimore <- NEI[NEI$fips == "24510", ]
+
 # Creating a new variable with data for coal
 vehicleData <- grepl("vehicle", SCC$SCC.Level.Two, ignore.case=TRUE)
 vehicleSCC <- SCC[vehicleData, ]
-vehicleEmissions <- NEI[NEI$SCC %in% vehicleSCC$SCC, ]
+vehicleEmissions <- emissionsBaltimore[emissionsBaltimore$SCC %in% vehicleSCC$SCC, ]
 
 # Calculating the total emissions due to coal combustion 
 # with respect to the years
@@ -25,5 +28,5 @@ barplot(totalVehicleEmissions,
         col = "blue",
         xlab = "Year",
         ylab = "Emissions",
-        main = "Total emissions from Vehicles")
+        main = "Total emissions from Vehicles in Baltimore city")
 dev.off()
