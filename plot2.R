@@ -9,7 +9,7 @@ colnames(NEI)
 colnames(SCC)
 
 # Creating a new variable with data of Baltimore city
-emissionsBaltimore <- NEI[NEI$fips == "24510"]
+emissionsBaltimore <- NEI[NEI$fips == "24510", ]
 
 # Calculating the total emissions with respect to the years
 totalEmissionsBaltimore <- tapply(emissionsBaltimore$Emissions, 
